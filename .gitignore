@@ -58,3 +58,5 @@ typings/
 .env
 
 .idea/
+static_assets/.DS_Store
+.DS_Store/
