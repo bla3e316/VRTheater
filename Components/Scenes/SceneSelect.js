@@ -1,14 +1,16 @@
 import React from 'react';
-import MainMenuContainer from './Layouts/MainMenuContainer';
-import  {
-    Text,
+import {
     View,
+    Text,
+    VrButton
 } from 'react-vr';
+import SceneSelectMenu from './Layouts/SceneSelectMenu';
 
-class MainMenu extends React.Component {
+//Scene
+class SceneSelect extends React.Component {
     render() {
         return (
-            <MainMenuContainer
+            <SceneSelectMenu
                 text={this.props.text}
                 buttonText={this.props.buttonText}
                 updateScene={this.props.updateScene}
@@ -18,4 +20,4 @@ class MainMenu extends React.Component {
     }
 }
 
-module.exports = MainMenu;
+module.exports = SceneSelect;

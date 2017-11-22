@@ -1,24 +1,26 @@
 import React from 'react';
 import {
-    Text,
     View,
+    Text,
     VrButton
 } from 'react-vr';
 import Title from './Elements/Title';
 import Button from './Elements/Button';
 
 //Layout
-class MainMenuContainer extends React.Component {
+class SceneSelectMenu extends React.Component {
     render() {
         return (
-            <View style={{
-                flex: 1,
-                width: 5,
-                flexDirection: 'column',
-                alignItems: 'stretch',
-                layoutOrigin: [0.5, 0.5],
-                transform: [{translate: [0, 0, -3]}]
-            }}>
+            <View
+                style={{
+                    flex: 1,
+                    width: 3,
+                    flexDirection: 'column',
+                    alignItems: 'stretch',
+                    layoutOrigin: [0.5, 0.5],
+                    transform: [{translate: [0, 0, -3]}]
+                }}
+            >
                 <Title text={this.props.text}/>
                 <Button buttonText={this.props.buttonText}
                         updateScene={this.props.updateScene}
@@ -29,5 +31,4 @@ class MainMenuContainer extends React.Component {
     }
 }
 
-
-module.exports = MainMenuContainer;
+module.exports = SceneSelectMenu;
