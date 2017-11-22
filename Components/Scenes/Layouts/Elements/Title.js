@@ -4,24 +4,50 @@ import {
     View,
     Animated
 } from 'react-vr';
+import { Easing } from 'react-native';
 
 //Element
 class Title extends React.Component {
     constructor() {
         super();
         this.state = {
-            slideValue: new Animated.Value(1.5)};
+            fade: new Animated.Value(0),
+            slide: new Animated.Value(0)
+        };
     }
 
     componentDidMount() {
-        Animated.timing(
-            this.state.slideValue,
-            {
-                toValue: 0,
-                duration: 2000,
-                delay: 3000
-            }
-        ).start();
+        this.state.fade.setValue(1);
+        this.state.slide.setValue(1.5);
+        Animated.sequence([
+            Animated.timing(
+                this.state.fade,
+                {
+                    toValue: 0,
+                    duration: 4000,
+                    easing: Easing.ease
+                }
+            ),
+            Animated.stagger(500, [
+                Animated.timing(
+                    this.state.fade,
+                    {
+                        toValue: 1,
+                        duration: 2000,
+                        easing: Easing.ease
+                    }
+                ),
+                Animated.timing(
+                    this.state.slide,
+                    {
+                        toValue: 0,
+                        duration: 2000,
+                        easing: Easing.ease
+                    }
+                )
+            ])
+
+        ]).start();
     }
 
     render() {
@@ -30,11 +56,12 @@ class Title extends React.Component {
                 <Animated.Text
                     style={{
                         fontSize: 0.5,
+                        opacity: this.state.fade,
                         fontWeight: '400',
                         textAlign: 'center',
                         textAlignVertical: 'center',
                         transform: [
-                            {scaleY: this.state.slideValue}
+                            {translateY: this.state.slide}
                         ]
                     }}>
                     {this.props.text}
